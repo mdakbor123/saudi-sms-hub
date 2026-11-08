@@ -1,26 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0756c9">
+<title>Saudi SMS Hub</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#f1f5fb;color:#17243a}
+header{background:#0756c9;color:white;padding:22px}
+header h2{margin:0}
+header p{margin-bottom:0}
+nav{display:flex;gap:8px;overflow-x:auto;background:white;padding:12px}
+nav button{padding:11px;border:0;border-radius:8px;background:#eaf1ff;color:#0756c9;font-weight:bold}
+main{max-width:850px;margin:auto;padding:15px}
+.card{background:white;border-radius:12px;padding:18px;margin:12px 0;box-shadow:0 2px 8px #0001}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:#eaf2ff;padding:18px;border-radius:10px}
+.stat strong{display:block;font-size:24px;color:#0756c9;margin-top:8px}
+.hidden{display:none}
+.tag{background:#fff0cc;color:#805500;padding:6px;border-radius:6px}
+</style>
+</head>
+<body>
+<header>
+<h2>🇸🇦 Saudi SMS Hub</h2>
+<p>SMS Management Platform</p>
+</header>
+
+<nav>
+<button onclick="showPage('home')">Home</button>
+<button onclick="showPage('inbox')">SMS Inbox</button>
+<button onclick="showPage('numbers')">Numbers</button>
+<button onclick="showPage('settings')">Settings</button>
+<button onclick="toggleLang()">বাংলা / EN</button>
+</nav>
+
+<main>
+<section id="home">
+<div class="card">
+<h3 id="welcome">সৌদি SMS হাবে স্বাগতম</h3>
+<p>আপনার SMS Management Dashboard</p>
+<span class="tag">DEMO MODE</span>
+</div>
+<div class="stats">
+<div class="stat">মোট নম্বর<strong>0</strong></div>
+<div class="stat">আজকের SMS<strong>0</strong></div>
+<div class="stat">সক্রিয় নম্বর<strong>0</strong></div>
+<div class="stat">সার্ভার<strong>Demo</strong></div>
+</div>
+<div class="card">
+<h3>Server Status</h3>
+<p>Dashboard: Running</p>
+<p>SMS Provider: Not Connected</p>
+<p>Real SMS: Not Available</p>
+</div>
+</section>
+
+<section id="inbox" class="hidden">
+<div class="card">
+<h3>SMS Inbox</h3>
+<p>এটি ডেমো ইনবক্স। এখনো বাস্তব SMS সংযুক্ত নেই।</p>
+<p>No messages yet.</p>
+</div>
+</section>
+
+<section id="numbers" class="hidden">
+<div class="card">
+<h3>Number Management</h3>
+<p>বাস্তব নম্বর এখনো সংযুক্ত করা হয়নি।</p>
+<p>Authorized SMS Provider সংযুক্ত হলে এখানে নম্বর দেখা যাবে।</p>
 </div>
 </section>
 
 <section id="settings" class="hidden">
 <div class="card">
 <h3>Settings</h3>
-<p>SMS Provider API এখনো সংযুক্ত করা হয়নি।</p>
-<p>Provider সংযুক্ত করতে নিরাপদ Backend Server প্রয়োজন।</p>
+<p>SMS Provider: Not Connected</p>
+<p>API Integration: Pending</p>
+<p>নিরাপদ Backend Server প্রয়োজন।</p>
 </div>
 </section>
 </main>
 
 <script>
 function showPage(page){
-document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
+document.querySelectorAll('main section').forEach(function(s){
+s.classList.add('hidden');
+});
 document.getElementById(page).classList.remove('hidden');
 }
-
 let english=false;
 function toggleLang(){
 english=!english;
-document.getElementById('welcome').innerText=
-english?'Welcome to Saudi SMS Hub':'স্বাগতম Saudi SMS Hub-এ';
+document.getElementById('welcome').innerText=english?
+'Welcome to Saudi SMS Hub':'সৌদি SMS হাবে স্বাগতম';
 }
 </script>
 </body>
