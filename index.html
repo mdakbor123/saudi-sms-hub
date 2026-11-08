@@ -1,1 +1,27 @@
-# saudi-sms-hub
+</div>
+</section>
+
+<section id="settings" class="hidden">
+<div class="card">
+<h3>Settings</h3>
+<p>SMS Provider API এখনো সংযুক্ত করা হয়নি।</p>
+<p>Provider সংযুক্ত করতে নিরাপদ Backend Server প্রয়োজন।</p>
+</div>
+</section>
+</main>
+
+<script>
+function showPage(page){
+document.querySelectorAll('main section').forEach(s=>s.classList.add('hidden'));
+document.getElementById(page).classList.remove('hidden');
+}
+
+let english=false;
+function toggleLang(){
+english=!english;
+document.getElementById('welcome').innerText=
+english?'Welcome to Saudi SMS Hub':'স্বাগতম Saudi SMS Hub-এ';
+}
+</script>
+</body>
+</html>
