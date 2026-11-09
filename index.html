@@ -6,116 +6,34 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#0756c9">
 <title>Saudi SMS Hub</title>
-
 <style>
 *{box-sizing:border-box}
-body{
- margin:0;
- font-family:Arial,sans-serif;
- background:#f1f5fb;
- color:#17243a
-}
-header{
- background:#0756c9;
- color:white;
- padding:22px
-}
+body{margin:0;font-family:Arial,sans-serif;background:#f1f5fb;color:#17243a}
+header{background:#0756c9;color:white;padding:22px}
 header h2{margin:0}
 header p{margin-bottom:0}
-nav{
- display:flex;
- gap:8px;
- overflow-x:auto;
- background:white;
- padding:12px
-}
-nav button{
- padding:11px;
- border:0;
- border-radius:8px;
- background:#eaf1ff;
- color:#0756c9;
- font-weight:bold;
- white-space:nowrap
-}
-nav button.active{
- background:#0756c9;
- color:white
-}
+nav{display:flex;gap:8px;overflow-x:auto;background:white;padding:12px}
+nav button{padding:11px;border:0;border-radius:8px;background:#eaf1ff;color:#0756c9;font-weight:bold;white-space:nowrap}
+nav button.active{background:#0756c9;color:white}
 main{max-width:850px;margin:auto;padding:15px}
-.card{
- background:white;
- border-radius:12px;
- padding:18px;
- margin:12px 0;
- box-shadow:0 2px 8px #0001
-}
-.stats{
- display:grid;
- grid-template-columns:1fr 1fr;
- gap:12px
-}
-.stat{
- background:#eaf2ff;
- padding:18px;
- border-radius:10px
-}
-.stat strong{
- display:block;
- font-size:24px;
- color:#0756c9;
- margin-top:8px
-}
+.card{background:white;border-radius:12px;padding:18px;margin:12px 0;box-shadow:0 2px 8px #0001}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.stat{background:#eaf2ff;padding:18px;border-radius:10px}
+.stat strong{display:block;font-size:24px;color:#0756c9;margin-top:8px}
 .hidden{display:none}
-.tag{
- background:#fff0cc;
- color:#805500;
- padding:6px;
- border-radius:6px;
- font-size:12px
-}
-.status{
- color:#b7791f;
- font-weight:bold
-}
-.number{
- border:1px solid #e3eaf5;
- padding:14px;
- border-radius:10px;
- margin:10px 0
-}
-.number strong{color:#0756c9}
+.tag{background:#fff0cc;color:#805500;padding:6px;border-radius:6px;font-size:12px}
+.status{color:#b7791f;font-weight:bold}
+.number{border:1px solid #e3eaf5;padding:14px;border-radius:10px;margin:10px 0}
+.number strong{color:#0756c9;overflow-wrap:anywhere}
 .muted{color:#718096;font-size:13px}
-.empty{
- text-align:center;
- padding:30px 10px;
- color:#718096
-}
-input,select{
- width:100%;
- padding:12px;
- margin:8px 0;
- border:1px solid #ccd7e6;
- border-radius:8px;
- font-size:15px
-}
-.primary{
- background:#0756c9;
- color:white;
- border:0;
- padding:12px 18px;
- border-radius:8px;
- font-weight:bold
-}
-footer{
- text-align:center;
- padding:20px;
- color:#718096;
- font-size:12px
-}
+.empty{text-align:center;padding:30px 10px;color:#718096}
+input,select{width:100%;padding:12px;margin:8px 0;border:1px solid #ccd7e6;border-radius:8px;font-size:15px}
+.primary{background:#0756c9;color:white;border:0;padding:12px 18px;border-radius:8px;font-weight:bold;cursor:pointer}
+.delete{background:#fee2e2;color:#b91c1c;border:0;padding:9px 13px;border-radius:7px;font-weight:bold;cursor:pointer}
+footer{text-align:center;padding:20px;color:#718096;font-size:12px}
+.message{padding:12px;background:#eaf2ff;border-radius:8px;margin:10px 0}
 </style>
 </head>
-
 <body>
 
 <header>
@@ -133,9 +51,7 @@ footer{
 
 <main>
 
-<!-- HOME -->
 <section id="home">
-
 <div class="card">
 <h3 id="welcome">সৌদি SMS হাবে স্বাগতম</h3>
 <p id="dashboardText">আপনার SMS Management Dashboard</p>
@@ -143,25 +59,10 @@ footer{
 </div>
 
 <div class="stats">
-<div class="stat">
-<span id="totalLabel">মোট নম্বর</span>
-<strong id="totalNumbers">0</strong>
-</div>
-
-<div class="stat">
-<span id="smsLabel">আজকের SMS</span>
-<strong id="todaySMS">0</strong>
-</div>
-
-<div class="stat">
-<span id="activeLabel">সক্রিয় নম্বর</span>
-<strong id="activeNumbers">0</strong>
-</div>
-
-<div class="stat">
-<span id="serverLabel">সার্ভার</span>
-<strong>Demo</strong>
-</div>
+<div class="stat">মোট নম্বর<strong id="totalNumbers">0</strong></div>
+<div class="stat">আজকের SMS<strong id="todaySMS">0</strong></div>
+<div class="stat">সক্রিয় নম্বর<strong id="activeNumbers">0</strong></div>
+<div class="stat">সার্ভার<strong>Demo</strong></div>
 </div>
 
 <div class="card">
@@ -170,72 +71,68 @@ footer{
 <p>SMS Provider: <span class="status">Not Connected</span></p>
 <p>Real SMS: <span class="status">Not Available</span></p>
 </div>
-
 </section>
 
-<!-- SMS INBOX -->
 <section id="inbox" class="hidden">
-
 <div class="card">
 <h3>📩 SMS Inbox</h3>
 <p class="muted">Received Messages</p>
-
-<div id="messages">
 <div class="empty">
 📭
 <h3>No messages yet</h3>
-<p>Provider সংযুক্ত হলে আসল SMS এখানে দেখা যাবে।</p>
+<p>অনুমোদিত SMS Provider সংযুক্ত হলে আসল SMS এখানে দেখা যাবে।</p>
 </div>
-</div>
-
 </div>
 </section>
 
-<!-- NUMBERS -->
 <section id="numbers" class="hidden">
-
 <div class="card">
 <h3>📱 Number Management</h3>
-<p>নম্বর ব্যবস্থাপনা</p>
+<p>নিজের অনুমোদিত নম্বর যোগ ও পরিচালনা করুন।</p>
 
-<span class="tag">DEMO NUMBER SLOTS</span>
+<span class="tag">LOCAL DEMO MANAGEMENT</span>
 
-<div id="numberList"></div>
+<h3>নতুন নম্বর যোগ করুন</h3>
+
+<form id="numberForm">
+<label>নম্বরের নাম</label>
+<input id="numberName" type="text" placeholder="যেমন: Business Number 1" maxlength="40" required>
+
+<label>সৌদি ফোন নম্বর</label>
+<input id="phoneNumber" type="tel" placeholder="+9665XXXXXXXX" required>
+
+<button class="primary" type="submit">＋ Add Number</button>
+</form>
 
 <p class="muted">
-এগুলো শুধু পরীক্ষার জন্য ৫টি খালি স্লট।
-এগুলো বাস্তব ফোন নম্বর নয়।
+শুধু নিজের বা ব্যবহারের অনুমতি থাকা নম্বর যোগ করুন।
 </p>
-
 </div>
 
+<div class="card">
+<h3>আমার নম্বরের তালিকা</h3>
+<div id="numberList"></div>
+</div>
 </section>
 
-<!-- SETTINGS -->
 <section id="settings" class="hidden">
-
 <div class="card">
 <h3>⚙️ Settings</h3>
-
 <p>SMS Provider: Not Connected</p>
 <p>API Integration: Pending</p>
 <p>Backend Server: Required</p>
-
 <hr>
-
 <h3>Provider Configuration</h3>
-
-<label>Provider Name</label>
 <input type="text" placeholder="Approved SMS Provider" disabled>
-
-<label>API Status</label>
 <input type="text" value="Not Connected" disabled>
-
 <p class="muted">
-API Key এবং Secret কখনো HTML ফাইলে রাখবে না।
-নিরাপদ Backend Server থেকে API সংযোগ করতে হবে।
+API Key ও Secret HTML ফাইলে রাখবেন না।
+নিরাপদ Backend Server প্রয়োজন।
 </p>
-
+</div>
+<div class="card">
+<h3>Local Data</h3>
+<p class="muted">এই ব্রাউজারে যোগ করা নম্বরগুলো সংরক্ষিত থাকবে। অন্য ফোন বা ব্রাউজারে স্বয়ংক্রিয়ভাবে দেখা যাবে না।</p>
 </div>
 </section>
 
@@ -247,76 +144,122 @@ Demo Dashboard
 </footer>
 
 <script>
-
 let english=false;
+let numbers=[];
+
+try{
+ numbers=JSON.parse(localStorage.getItem('saudiHubNumbers')||'[]');
+ if(!Array.isArray(numbers)) numbers=[];
+}catch(e){
+ numbers=[];
+}
+
+function saveNumbers(){
+ localStorage.setItem('saudiHubNumbers',JSON.stringify(numbers));
+ updateDashboard();
+ renderNumbers();
+}
 
 function showPage(page,button){
+ document.querySelectorAll('main section').forEach(s=>{
+  s.classList.add('hidden');
+ });
+ document.getElementById(page).classList.remove('hidden');
 
- document.querySelectorAll('main section')
- .forEach(s=>s.classList.add('hidden'));
-
- document.getElementById(page)
- .classList.remove('hidden');
-
- document.querySelectorAll('nav button')
- .forEach(b=>b.classList.remove('active'));
-
+ document.querySelectorAll('nav button').forEach(b=>{
+  b.classList.remove('active');
+ });
  if(button) button.classList.add('active');
 }
 
-function toggleLang(){
-
- english=!english;
-
- document.getElementById('welcome').innerText=
- english?'Welcome to Saudi SMS Hub':'সৌদি SMS হাবে স্বাগতম';
-
- document.getElementById('dashboardText').innerText=
- english?'Your SMS Management Dashboard':'আপনার SMS Management Dashboard';
-
- document.getElementById('totalLabel').innerText=
- english?'Total Numbers':'মোট নম্বর';
-
- document.getElementById('smsLabel').innerText=
- english?"Today's SMS":'আজকের SMS';
-
- document.getElementById('activeLabel').innerText=
- english?'Active Numbers':'সক্রিয় নম্বর';
-
- document.getElementById('serverLabel').innerText=
- english?'Server':'সার্ভার';
+function updateDashboard(){
+ document.getElementById('totalNumbers').innerText=numbers.length;
+ document.getElementById('activeNumbers').innerText='0';
+ document.getElementById('todaySMS').innerText='0';
 }
 
-function loadNumberSlots(){
-
+function renderNumbers(){
  const list=document.getElementById('numberList');
+ list.innerHTML='';
 
- for(let i=1;i<=5;i++){
+ if(numbers.length===0){
+  list.innerHTML='<div class="empty">📱<h3>কোনো নম্বর যোগ করা হয়নি</h3><p>উপরের ফর্ম থেকে নম্বর যোগ করুন।</p></div>';
+  return;
+ }
 
+ numbers.forEach((n,index)=>{
   const item=document.createElement('div');
   item.className='number';
 
-  const title=document.createElement('strong');
-  title.innerText='Number Slot '+i;
+  const name=document.createElement('strong');
+  name.textContent=n.name;
+
+  const phone=document.createElement('p');
+  phone.textContent=n.phone;
 
   const status=document.createElement('p');
   status.className='status';
-  status.innerText='Not Assigned';
+  status.textContent='Pending Provider Verification';
 
-  const description=document.createElement('p');
-  description.className='muted';
-  description.innerText='No real number connected';
+  const note=document.createElement('p');
+  note.className='muted';
+  note.textContent='SMS API এখনো সংযুক্ত নয়';
 
-  item.appendChild(title);
-  item.appendChild(status);
-  item.appendChild(description);
+  const del=document.createElement('button');
+  del.className='delete';
+  del.textContent='Delete Number';
+  del.type='button';
+  del.onclick=()=>deleteNumber(index);
 
+  item.append(name,phone,status,note,del);
   list.appendChild(item);
- }
+ });
 }
 
-loadNumberSlots();
+document.getElementById('numberForm').addEventListener('submit',function(e){
+ e.preventDefault();
 
+ const name=document.getElementById('numberName').value.trim();
+ const phone=document.getElementById('phoneNumber').value.trim();
+
+ const clean=phone.replace(/[\s()-]/g,'');
+
+ if(!/^\+9665\d{8}$/.test(clean)){
+  alert('সঠিক সৌদি মোবাইল নম্বর লিখুন। উদাহরণ: +9665XXXXXXXX');
+  return;
+ }
+
+ if(numbers.some(n=>n.phone===clean)){
+  alert('এই নম্বরটি ইতিমধ্যে যোগ করা হয়েছে।');
+  return;
+ }
+
+ numbers.push({
+  name:name,
+  phone:clean
+ });
+
+ saveNumbers();
+ this.reset();
+ alert('নম্বরটি তালিকায় যোগ হয়েছে। এটি এখনো SMS গ্রহণের জন্য সংযুক্ত নয়।');
+});
+
+function deleteNumber(index){
+ if(!confirm('এই নম্বরটি তালিকা থেকে মুছে ফেলবেন?')) return;
+ numbers.splice(index,1);
+ saveNumbers();
+}
+
+function toggleLang(){
+ english=!english;
+ document.getElementById('welcome').innerText=
+ english?'Welcome to Saudi SMS Hub':'সৌদি SMS হাবে স্বাগতম';
+ document.getElementById('dashboardText').innerText=
+ english?'Your SMS Management Dashboard':'আপনার SMS Management Dashboard';
+}
+
+updateDashboard();
+renderNumbers();
 </script>
 
 </body>
